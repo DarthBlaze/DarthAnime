@@ -1,23 +1,28 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>{{ selectedItem.Name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
+    <button
+      ion-item
+      *ngFor="let item of items"
+      (tap)="itemTapped($event, item)"
+    >
+      <ion-icon
+        *ngIf="item.Type === 'folder'"
+        name="folder"
+        item-start
+      ></ion-icon>
+      <ion-icon *ngIf="item.Type === 'video'" name="play" item-start></ion-icon>
+      {{ item.Name }}
+      <ion-note *ngIf="item.Size != '-'" item-end
+        >{{ item.Size }}
+      </ion-note>
+      <ion-note item-end>{{ item.Resolution }} </ion-note>
     </button>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
