@@ -1,13 +1,18 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title>DarthAnime</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle *ngIf="!inSearch"><ion-icon name="menu"></ion-icon></button>
+        <ion-title *ngIf="!inSearch">DarthAnime</ion-title>
+        <ion-searchbar #searchbar [(ngModel)]="searchTerm" *ngIf="inSearch" (ionInput)="setFilteredItems()"></ion-searchbar>
+        <ion-buttons end>
+            <button (click)="toggleSearch()" ion-button><ion-icon name="search" *ngIf="!inSearch"></ion-icon><ion-icon name="close" *ngIf="inSearch"></ion-icon></button>
+        </ion-buttons>
+
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (tap)="tap(item)">
+    <ion-list>
+        <button ion-item *ngFor="let item of items" (tap)="tap(item)">
       <ion-icon *ngIf="item.Type === 'folder'" name="folder" item-start></ion-icon>
       <ion-icon *ngIf="item.Type === 'video'" name="play" item-start></ion-icon>
       {{
@@ -15,5 +20,5 @@
       }}
       <ion-note *ngIf="item.Size != '-'" item-end> {{ item.Size }} </ion-note>
     </button>
-  </ion-list>
+    </ion-list>
 </ion-content>

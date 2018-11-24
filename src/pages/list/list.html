@@ -1,17 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title>{{ selectedItem.Name }}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title *ngIf="!inSearch">{{ selectedItem.Name }}</ion-title>
+        <ion-searchbar #searchbar [(ngModel)]="searchTerm" *ngIf="inSearch" (ionInput)="setFilteredItems()"></ion-searchbar>
+        <ion-buttons end>
+            <button (click)="toggleSearch()" ion-button><ion-icon name="search" *ngIf="!inSearch"></ion-icon><ion-icon name="close" *ngIf="inSearch"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button
-      ion-item
-      *ngFor="let item of items"
-      (tap)="itemTapped($event, item)"
-    >
+    <ion-list>
+        <button ion-item *ngFor="let item of items" (tap)="itemTapped($event, item)">
       <ion-icon
         *ngIf="item.Type === 'folder'"
         name="folder"
@@ -24,5 +24,5 @@
       </ion-note>
       <ion-note item-end>{{ item.Resolution }} </ion-note>
     </button>
-  </ion-list>
+    </ion-list>
 </ion-content>

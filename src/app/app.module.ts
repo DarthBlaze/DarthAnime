@@ -12,12 +12,16 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EraiRawsDataScraperProvider } from '../providers/erai-raws-data-scraper/erai-raws-data-scraper';
+import { AboutPage } from '../pages/about/about';
+import { HelpPage } from '../pages/help/help';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    AboutPage,
+    HelpPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,9 @@ import { EraiRawsDataScraperProvider } from '../providers/erai-raws-data-scraper
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    AboutPage,
+    HelpPage
   ],
   providers: [
     StatusBar,
