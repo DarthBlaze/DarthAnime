@@ -10,7 +10,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <ion-list>
         <button ion-item *ngFor="let item of items" (tap)="tap(item)">
       <ion-icon *ngIf="item.Type === 'folder'" name="folder" item-start></ion-icon>
